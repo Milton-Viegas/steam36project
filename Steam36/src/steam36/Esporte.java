@@ -2,13 +2,13 @@ package Steam36;
 
 import java.util.ArrayList;
 
-public class Aventura {
+public class Esporte {
 	
 	
 	private ArrayList <Game> lista = new ArrayList <>();
 	
-	public Aventura () {	
-		this.lista.add(new Game("Ori and the Blind Forest", 1, 59.00));
+	public Esporte () {	
+		this.lista.add(new Game("Fifa 2022", 1, 259.00));
 		this.lista.add(new Game("Crash Bandicoot",1 , 149.90));
 		this.lista.add(new Game("Spyro",1 , 149.90));
 		this.lista.add(new Game("Hollow Knight",1 , 27.99));

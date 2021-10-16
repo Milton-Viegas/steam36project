@@ -1,7 +1,20 @@
-package steam36;
+package Steam36;
 
-import java.util.*;
-import javax.swing.*;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import java.util.List;
+
+import java.util.ArrayList;
+
+import Steam36.Aventura;
+
+import Steam36.Luta;
+
+import Steam36.RPG;
+
+import Steam36.Esporte;
 
 public class FeedClass {
 
@@ -12,7 +25,7 @@ public class FeedClass {
 	public String luta;
 
 	Scanner ler = new Scanner(System.in);
-	int valor = 0;
+
 
 	// Construtor
 	public FeedClass() {
@@ -22,18 +35,18 @@ public class FeedClass {
 	public void FeedClass1() {
 		int op;
 
-			JOptionPane.showMessageDialog(null, "\n----------------------------------------\n"
-					+ "BEM VINDO AO FEED JOGOS\n----------------------------------------\n");
-			
-			op = Integer.parseInt(JOptionPane.showInputDialog("\n----------------------------------------\n "
-					+ "           CATEGORIAS\n"
-					+ " ----------------------------------------\n\n"
-					+ " 1) Ação e Aventura\n"
-					+ " 2) Luta\n"
-					+ " 3) RPG\n"
-					+ " 4) Esporte\n"
-					+ " 5) Sair\n"
-					+ "\n Opção:"));
+
+		//Objetos
+
+
+		do { // Menu's Feed
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
+					+ "BEM VINDO AO FEED JOGOS\n----------------------------------------\n"
+					+ "       LISTA DE CATEGORIAS\n"
+					+ "1) Aventura/Ação\n"
+					+ "2) Luta\n"
+					+ "3) RPG\n"
+					+ "4) Esporte\n"));
 
 			switch (op)  {
 
@@ -41,65 +54,116 @@ public class FeedClass {
 			case 2: this.Luta(); break;
 			case 3: this.RPG(); break;
 			case 4: this.Esporte(); break;
-			case 5: Main.Menu(); break;
-			default: JOptionPane.showMessageDialog(null, "\n OPÇÃO INVÁLIDA!!"); this.FeedClass1(); break;
-		}
+			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
+			}
+		} while (op == 0);
 	}
-	public void AventuraAção() { 
+	public void AventuraAção() { //MENU DE JOGOS DE AVENTURA
 		int op;
 
 		Aventura catAventura = new Aventura();
 		ArrayList <Game> jogosAventura = catAventura.getLista();
-		
+
+		do { 
 			String textoJogos = "";
 			for(int i=0;i<jogosAventura.size();i++) {
-				textoJogos += (i + 1) + ") " +jogosAventura.get(i).getNomeJogo() +"\n Preço: R$"+jogosAventura.get(i).getPrecoUni()+"\n\n";
+				textoJogos += (i + 1) + ") Nome: " +jogosAventura.get(i).getNomeJogo() +" Preço: "+jogosAventura.get(i).getPrecoUni()+"\n";
 			}
 			
 			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
 					+ "\tJOGOS DISPONÍVEIS\n----------------------------------------\n"
 					+ textoJogos));
 				
+					
 			switch (op)  {
 
-			case 1: System.out.print("\n Valor: "+jogosAventura.get(0).getPrecoUni());
-			valor += jogosAventura.get(0).getPrecoUni();
-			break;
-			case 2: System.out.print("\n Valor: "+jogosAventura.get(1).getPrecoUni());
-			valor += jogosAventura.get(1).getPrecoUni();
-			break;
+			case 1: System.out.print(jogosAventura.get(0)); break;
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
-			
+
+			} 
+		}	while (op == 0);
+	}
+
+	public void Luta() {	//MENU DE JOGOS DE LUTA
+		int op;
+
+		Luta catLuta = new Luta();
+		ArrayList <Game> jogosLuta = catLuta.getLista();
+
+		do { //Menu's Games
+			String textoJogos = "";
+			for(int i=0;i<jogosLuta.size();i++) {
+				textoJogos += (i + 1) + ") Nome: " +jogosLuta.get(i).getNomeJogo() +" Preço: "+jogosLuta.get(i).getPrecoUni()+"\n";
 			}
 			
-			System.out.print("\n Deseja comprar novamente?\n 1) Sim\n 2) Finalizar compra\n\n Opção: "); op = ler.nextInt();
-			if (op == 1) { this.FeedClass1(); } else {System.out.println("\n CARRINHO!!\n Valor total: R$"+valor);}
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
+					+ "\tJOGOS DISPONÍVEIS\n----------------------------------------\n"
+					+ textoJogos));
+				
+					
+			switch (op)  {
+
+			case 2: System.out.print(jogosLuta.get(0)); break;
+			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
+
+			} 
+		}	while (op == 0);
 	
 	}
 
-	public void Luta() {
+	public void RPG() {			//MENU DE JOGOS DE RPG
+		int op;
 
-		System.out.println("\n TESTE LUTA!");
-		this.FeedClass1();
-	}
+		RPG catRPG = new RPG();
+		ArrayList <Game> jogosRPG = catRPG.getLista();
 
-	public void RPG() {
+		do { //Menu's Games
+			String textoJogos = "";
+			for(int i=0;i<jogosRPG.size();i++) {
+				textoJogos += (i + 1) + ") Nome: " +jogosRPG.get(i).getNomeJogo() +" Preço: "+jogosRPG.get(i).getPrecoUni()+"\n";
+			}
+			
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
+					+ "\tJOGOS DISPONÍVEIS\n----------------------------------------\n"
+					+ textoJogos));
+				
+					
+			switch (op)  {
 
-		System.out.println("\n RPG!");
-		this.FeedClass1();
+			case 3: System.out.print(jogosRPG.get(0)); break;
+			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 
-	}
-
-	public void Esporte() {
-
-		System.out.println("\n TESTE ESPORTE!");
-		this.FeedClass1();
-
-	}
+			} 
+		}	while (op == 0);
 	
+	}
+
+	public void Esporte() {			//MENU DE JOGOS DE ESPORTE
+		int op;
+
+		Esporte catEsporte = new Esporte();
+		ArrayList <Game> jogosEsporte = catEsporte.getLista();
+
+		do { 
+			String textoJogos = "";
+			for(int i=0;i<jogosEsporte.size();i++) {
+				textoJogos += (i + 1) + ") Nome: " +jogosEsporte.get(i).getNomeJogo() +" Preço: "+jogosEsporte.get(i).getPrecoUni()+"\n";
+			}
+			
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
+					+ "\tJOGOS DISPONÍVEIS\n----------------------------------------\n"
+					+ textoJogos));
+				
+					
+			switch (op)  {
+
+			case 3: System.out.print(jogosEsporte.get(0)); break;
+			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
+
+			} 
+		}	while (op == 0);
 	
-
-
+	}
 	// Get e Set
 	public String getNome() { return nome; }
 

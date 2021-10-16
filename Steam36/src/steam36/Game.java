@@ -1,6 +1,4 @@
-package steam36;
-
-import java.text.NumberFormat;
+package Steam36;
 
 public class Game {
 
@@ -18,14 +16,12 @@ public class Game {
 		this.qtd = qtd;
 		this.precoUni = precoUni;
 	}
-	
-	public String formatarMoeda() {	// Formatar Preço para R$ 0.000,00
-		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		nf.setMinimumFractionDigits(2);
-		String formatoMoeda = nf.format(precoUni);
-		return formatoMoeda;
+	public Game() {
+		this.nomeJogo = " ";
+		this.qtd = 0;
+		this.precoUni = 0;
+		
 	}
-	
 	// Getters & Setters
 	public String getNomeJogo() {
 		return nomeJogo;
