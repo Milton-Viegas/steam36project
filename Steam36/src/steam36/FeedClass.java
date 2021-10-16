@@ -1,4 +1,4 @@
-package ProjetoJava;
+package steam36;
 
 import java.util.Scanner;
 
@@ -77,5 +77,10 @@ public class FeedClass {
 	public double getPreco() { return preco; }
 
 	public void setPreco(double preco) { this.preco = preco; }
+
+	public void printInfo() {
+		System.out.println(getNome()+getPreco());
+		
+	}
 	
 }

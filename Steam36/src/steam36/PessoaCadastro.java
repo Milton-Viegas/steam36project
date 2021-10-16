@@ -1,4 +1,4 @@
-package ProjetoJava;
+package steam36;
 
 import java.util.Scanner;
 import javax.swing.*;
