@@ -1,12 +1,12 @@
-package steam36;
+package Steam36;
 
 import java.util.Scanner;
 
-public class TesteEletronico {
+public class TesteGames {
 
 	public static void main(String[] args) {
 
-		Eletronico eletronico1 = new Eletronico("Mario Kart", 389);
+		Game eletronico1 = new Game("Mario Kart", 389);
 
 		Scanner leia = new Scanner(System.in);
 

@@ -1,4 +1,4 @@
-package steam36;
+package Steam36;
 
 public class Cliente {
 	
