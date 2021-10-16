@@ -1,6 +1,6 @@
-package Steam36;
+package steam36;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Aventura {
 	
@@ -9,7 +9,7 @@ public class Aventura {
 	
 	public Aventura () {	
 		this.lista.add(new Game("Mario", 1, 300));
-		this.lista.add(new Game("Crash",1 , 179.90));
+		this.lista.add(new Game("Crash", 1, 179.90));
 	}
 
 	public ArrayList<Game> getLista() {
