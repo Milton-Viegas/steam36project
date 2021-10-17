@@ -98,7 +98,7 @@ public class FeedClass {
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 			}
 			
-			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Menu de compras\n\n Opção: "));
 			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	
 	}
@@ -140,7 +140,7 @@ public class FeedClass {
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 			}
 			
-			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Menu de compras\n\n Opção: "));
 			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	
 	}
@@ -180,7 +180,7 @@ public class FeedClass {
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 			}
 			
-			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Menu de compras\n\n Opção: "));
 			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 			
 	}
@@ -222,7 +222,7 @@ public class FeedClass {
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 			}
 			
-			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Menu de compras\n\n Opção: "));
 			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	}
 	
