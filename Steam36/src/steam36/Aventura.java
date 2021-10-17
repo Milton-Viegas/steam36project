@@ -1,9 +1,8 @@
-package Steam36;
+package steam36;
 
 import java.util.ArrayList;
 
 public class Aventura {
-	
 	
 	private ArrayList <Game> lista = new ArrayList <>();
 	

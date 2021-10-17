@@ -1,4 +1,4 @@
-package Steam36;
+package steam36;
 
 import java.util.ArrayList;
 

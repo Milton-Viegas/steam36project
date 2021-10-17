@@ -11,12 +11,9 @@ public class Main {
 	@SuppressWarnings("static-access")	// 
 	static void Menu () {
 		
-		// Objetos
-		FeedClass fc = new FeedClass();
-		
 		int op;
 		
-		do {	// Menu de Opções
+		// Menu de Opções
 			op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n "
 					+ "Escolha a opção\n ----------------------------------------\n "
 					+ "1) Login\n 2) Cadastro\n 3) Informações\n 4) Feed de Jogos\n\n Opção: "));
@@ -25,17 +22,14 @@ public class Main {
 			case 1: PessoaCadastro.login(); break;
 			case 2: PessoaCadastro.cadastro(); break;
 			case 3: PessoaCadastro.print(); break;
-			case 4: fc.FeedClass1(); break;
+			case 4: FeedClass.FeedClass1(); break;
 			
-			default: JOptionPane.showMessageDialog(null,"\n Opção Inválida!!"); break;
+			default: JOptionPane.showMessageDialog(null,"\n Opção Inválida!!"); Main.Menu(); break;
 			}
 			
 			// Loop para manter o usuário no menu
 			op = Integer.parseInt(JOptionPane.showInputDialog("\n 1) FEED DE JOGOS\n 0) VOLTAR\n\n Opção:"));
-			} while (op == 0);	
-			
-			fc.FeedClass1();
-		
+			if (op == 1) { FeedClass.FeedClass1(); } else { Main.Menu(); }
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -52,8 +46,6 @@ public class Main {
 				+ "----------------------------------------");
 		
 		Main.Menu();
-		
-		
 		
 	}
 }

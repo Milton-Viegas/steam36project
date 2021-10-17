@@ -20,33 +20,39 @@ public class PagamentoClass {
 	// Métodos
 	static void cartao() {
 		String a, b, c, d, e;
-		JOptionPane.showMessageDialog(null,"\n ----------------------------------------\n        "
-				+ "CADASTRAR CARTÃO\n ----------------------------------------");
+		JOptionPane.showMessageDialog(null,"\n ----------------------------------------\n"
+				+ " CADASTRAR CARTÃO\n ----------------------------------------");
 		a = JOptionPane.showInputDialog(" Nome do Titular: "); PagamentoClass.setNomeTitutar(a);
 		b = JOptionPane.showInputDialog(" CPF do Titular: "); PagamentoClass.setCpf(b);
 		c = JOptionPane.showInputDialog(" Numero do Cartão: "); PagamentoClass.setnCartao(c);
 		d = JOptionPane.showInputDialog(" Validade do Cartão: "); PagamentoClass.setnValidade(d);
 		e = JOptionPane.showInputDialog(" Código de Segurança: "); PagamentoClass.setnSegCod(e);
-		JOptionPane.showMessageDialog(null,"\n CADASTRADO COM SUCESSO!!");
+		JOptionPane.showMessageDialog(null,"\n CADASTRADO COM SUCESSO!!"); 
+		PagamentoClass.confirmar();
 	}
 	
 	static void print() {
-		JOptionPane.showMessageDialog(null,"\n ----------------------------------------\n        "
-				+ "INFORMAÇÕES\n ---------------------------------------- "
-				+ "\n Nome: "+getNomeTitutar()+""
-						+ "\n Usuário: "+getCpf()+""
-								+ "\n Senha: "+getnCartao()+""
-										+ "\n Email: "+getnValidade()+""
-												+ "\n Data de Nascimento: "+getnSegCod()+"\n\n");
-	
+		JOptionPane.showMessageDialog(null,"\n ----------------------------------------\n"
+				+ " INFORMAÇÕES DO CARTÃO\n ---------------------------------------- "
+				+ "\n Nome do Titular: "+getNomeTitutar()+""
+						+ "\n CPF do Titular: "+getCpf()+""
+								+ "\n Numero do Cartão: "+getnCartao()+""
+										+ "\n Validade do Cartão: "+getnValidade()+""
+												+ "\n Código de Segurança: "+getnSegCod()+"\n\n");
+		FeedClass.Carrinho();
 	}
 	
 	static void confirmar() {
+		int op;
 		
-		System.out.print(" Valor total: "+FeedClass.getValor());
-		System.out.print("\n Deseja Confirmar a compra?");
-		System.out.print("\n 1) Sim\n ");
+		op = Integer.parseInt(JOptionPane.showInputDialog("\n Valor total: "+FeedClass.formatarMoeda()+"\n"
+				+ "\n Deseja Confirmar a compra?"
+				+ "\n 1) Sim\n 2) Voltar"));
 		
+		if (op == 1) { JOptionPane.showMessageDialog(null,"\n COMPRA REALIZADA COM SUCESSO!!\n"
+				+ " A NOTA FISCAL FOI ENVIADA PARA O EMAIL CADASTRADO!!\n\n"
+				+ " OBRIGADO PELA PREFERENCIA!!"); Main.Menu(); } 
+		else { FeedClass.Carrinho(); }
 	}
 	
 	

@@ -7,19 +7,20 @@ import javax.swing.*;
 public class FeedClass {
 
 	// Atributos
-	public String nome;
-	public double preco;
-	public String luta;
 	public static int valor = 0;	// Atributo Static para manipular em outra Classe
 	
-	Scanner ler = new Scanner(System.in);
+	// Array para fazer o armazenamento dos dados de jogos adicionados no carrinho
+	static Carrinho catCarrinho = new Carrinho();	
+	static ArrayList <Game> jogosCarrinho = catCarrinho.getLista();
+	
+	static Scanner ler = new Scanner(System.in);
 	
 	// Construtor
 	public FeedClass() {
 	}	
 
 	// Métodos
-	public void Feed() {
+	static void Feed() {	// Menu de Opções de Categorias
 		int op;
 		
 		op = Integer.parseInt(JOptionPane.showInputDialog("\n----------------------------------------\n "
@@ -36,37 +37,39 @@ public class FeedClass {
 
 		switch (op)  {
 		
-		case 1: this.AventuraAção(); break;
-		case 2: this.Luta(); break;
-		case 3: this.RPG(); break;
-		case 4: this.Esporte(); break;
-		case 5: this.Carrinho(); break;
+		case 1: FeedClass.AventuraAção(); break;
+		case 2: FeedClass.Luta(); break;
+		case 3: FeedClass.RPG(); break;
+		case 4: FeedClass.Esporte(); break;
+		case 5: FeedClass.Carrinho(); break;
 		case 6: Main.Menu(); break;
-		default: JOptionPane.showMessageDialog(null, "\n OPÇÃO INVÁLIDA!!"); this.FeedClass1(); break;
+		default: JOptionPane.showMessageDialog(null, "\n OPÇÃO INVÁLIDA!!"); FeedClass.FeedClass1(); break;
 		}
 	}
 	
-	public void bemvindo() {
+	static void bemvindo() {
 		JOptionPane.showMessageDialog(null, "\n----------------------------------------\n"
 				+ "BEM VINDO AO FEED JOGOS\n----------------------------------------\n");
 	}
 	
-	public void FeedClass1() {
+	static void FeedClass1() {
 		
-		this.bemvindo();
-		this.Feed();
+		FeedClass.bemvindo();
+		FeedClass.Feed();
 		
 	}
 	
 	
-	public void AventuraAção() { 
+	static void AventuraAção() { 
 		int op;
 
+		// Array para fazer exibir os dados dos jogos, armazenados na Classe Aventura
 		Aventura catAventura = new Aventura();
 		ArrayList <Game> jogosAventura = catAventura.getLista();
 		
 			String textoJogos = "";
 			for(int i=0;i<jogosAventura.size();i++) {
+				// Cria uma lista chamada "textoJogos" para exibir os jogos que estão dentro da ArrayLists Aventura.
 				textoJogos += (i + 1) + ") " +jogosAventura.get(i).getNomeJogo() +"\n Preço: "+jogosAventura.get(i).formatarMoeda()+"\n\n";
 			}
 			
@@ -74,30 +77,33 @@ public class FeedClass {
 					+ "       JOGOS DISPONÍVEIS\n----------------------------------------\n"
 					+ textoJogos));
 				
-			switch (op)  {
+			switch (op) {
 
-			case 1: System.out.print("\n Valor: "+jogosAventura.get(0).formatarMoeda());
-			valor += jogosAventura.get(0).getPrecoUni();
+			case 1: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosAventura.get(0).getNomeJogo()+"\n Preço: "+jogosAventura.get(0).formatarMoeda());
+			jogosCarrinho.add(jogosAventura.get(0));	// Implementa os dados do jogo escolhido na ArrayList Carrinho, para exibi-los no final.
+			valor += jogosAventura.get(0).getPrecoUni();	// Implementa o valor do jogo, para descobrir o valor total da compra
 			break;
-			case 2: System.out.print("\n Valor: "+jogosAventura.get(1).formatarMoeda());
+			case 2: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosAventura.get(1).getNomeJogo()+"\n Preço: "+jogosAventura.get(1).formatarMoeda());
+			jogosCarrinho.add(jogosAventura.get(1));
 			valor += jogosAventura.get(1).getPrecoUni();
 			break;
-			case 3: System.out.print("\n Valor: "+jogosAventura.get(2).formatarMoeda());
+			case 3: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosAventura.get(2).getNomeJogo()+"\n Preço: "+jogosAventura.get(2).formatarMoeda());
+			jogosCarrinho.add(jogosAventura.get(2));
 			valor += jogosAventura.get(2).getPrecoUni();
 			break;
-			case 4: System.out.print("\n Valor: "+jogosAventura.get(3).formatarMoeda());
+			case 4: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosAventura.get(3).getNomeJogo()+"\n Preço: "+jogosAventura.get(3).formatarMoeda());
+			jogosCarrinho.add(jogosAventura.get(3));
 			valor += jogosAventura.get(3).getPrecoUni();
 			break;
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
-			
 			}
 			
-			System.out.print("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Realizar Compra\n\n Opção: "); op = ler.nextInt();
-			if (op == 1) { this.Feed(); } else { this.Carrinho(); }
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	
 	}
 
-	public void Luta() {
+	static void Luta() { //MENU DE JOGOS DE LUTA
 		int op;
 
 		Luta catLuta = new Luta();
@@ -115,27 +121,30 @@ public class FeedClass {
 					
 			switch (op)  {
 
-			case 1: System.out.print("\n Valor: "+jogosLuta.get(0).formatarMoeda());
+			case 1: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosLuta.get(0).getNomeJogo()+"\n Preço: "+jogosLuta.get(0).formatarMoeda());
+			jogosCarrinho.add(jogosLuta.get(0));
 			valor += jogosLuta.get(0).getPrecoUni();
 			break;
-			case 2: System.out.print("\n Valor: "+jogosLuta.get(1).formatarMoeda());
+			case 2: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosLuta.get(1).getNomeJogo()+"\n Preço: "+jogosLuta.get(1).formatarMoeda());
+			jogosCarrinho.add(jogosLuta.get(1));
 			valor += jogosLuta.get(1).getPrecoUni();
 			break;
-			case 3: System.out.print("\n Valor: "+jogosLuta.get(2).formatarMoeda());
+			case 3: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosLuta.get(2).getNomeJogo()+"\n Preço: "+jogosLuta.get(2).formatarMoeda());
+			jogosCarrinho.add(jogosLuta.get(2));
 			valor += jogosLuta.get(2).getPrecoUni();
 			break;
-			case 4: System.out.print("\n Valor: "+jogosLuta.get(3).formatarMoeda());
+			case 4: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosLuta.get(3).getNomeJogo()+"\n Preço: "+jogosLuta.get(3).formatarMoeda());
+			jogosCarrinho.add(jogosLuta.get(3));
 			valor += jogosLuta.get(3).getPrecoUni();
 			break;
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
-
 			}
 			
-			System.out.print("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Realizar Compra\n\n Opção: "); op = ler.nextInt();
-			if (op == 1) { this.Feed(); } else { this.Carrinho(); }
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	
 	}
-	public void RPG() {	//MENU DE JOGOS DE RPG
+	static void RPG() {	//MENU DE JOGOS DE RPG
 		int op;
 
 		RPG catRPG = new RPG();
@@ -150,30 +159,33 @@ public class FeedClass {
 					+ "\tJOGOS DISPONÍVEIS\n----------------------------------------\n"
 					+ textoJogos));
 				
-					
 			switch (op)  {
 
-			case 1: System.out.print("\n Valor: "+jogosRPG.get(0).formatarMoeda());
+			case 1: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosRPG.get(0).getNomeJogo()+"\n Preço: "+jogosRPG.get(0).formatarMoeda());
+			jogosCarrinho.add(jogosRPG.get(0));
 			valor += jogosRPG.get(0).getPrecoUni();
 			break;
-			case 2: System.out.print("\n Valor: "+jogosRPG.get(1).formatarMoeda());
+			case 2: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosRPG.get(1).getNomeJogo()+"\n Preço: "+jogosRPG.get(1).formatarMoeda());
+			jogosCarrinho.add(jogosRPG.get(1));
 			valor += jogosRPG.get(1).getPrecoUni();
 			break;
-			case 3: System.out.print("\n Valor: "+jogosRPG.get(2).formatarMoeda());
+			case 3: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosRPG.get(2).getNomeJogo()+"\n Preço: "+jogosRPG.get(2).formatarMoeda());
+			jogosCarrinho.add(jogosRPG.get(2));
 			valor += jogosRPG.get(2).getPrecoUni();
 			break;
-			case 4: System.out.print("\n Valor: "+jogosRPG.get(3).formatarMoeda());
+			case 4: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosRPG.get(3).getNomeJogo()+"\n Preço: "+jogosRPG.get(3).formatarMoeda());
+			jogosCarrinho.add(jogosRPG.get(3));
 			valor += jogosRPG.get(3).getPrecoUni();
 			break;
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
 			}
 			
-			System.out.print("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Realizar Compra\n\n Opção: "); op = ler.nextInt();
-			if (op == 1) { this.Feed(); } else { this.Carrinho(); }
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 			
 	}
 
-	public void Esporte() {//MENU DE JOGOS DE ESPORTE
+	static void Esporte() {//MENU DE JOGOS DE ESPORTE
 		int op;
 
 		Esporte catEsporte = new Esporte();
@@ -189,51 +201,72 @@ public class FeedClass {
 					+ textoJogos));
 				
 					
-			switch (op)  {
+			switch (op) {
 
-			case 1: System.out.print("\n Valor: "+jogosEsporte.get(0).formatarMoeda());
+			case 1: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosEsporte.get(0).getNomeJogo()+"\n Preço: "+jogosEsporte.get(0).formatarMoeda());
+			jogosCarrinho.add(jogosEsporte.get(0));
 			valor += jogosEsporte.get(0).getPrecoUni();
 			break;
-			case 2: System.out.print("\n Valor: "+jogosEsporte.get(1).formatarMoeda());
+			case 2: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosEsporte.get(1).getNomeJogo()+"\n Preço: "+jogosEsporte.get(1).formatarMoeda());
+			jogosCarrinho.add(jogosEsporte.get(1));
 			valor += jogosEsporte.get(1).getPrecoUni();
 			break;
-			case 3: System.out.print("\n Valor: "+jogosEsporte.get(2).formatarMoeda());
+			case 3: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosEsporte.get(2).getNomeJogo()+"\n Preço: "+jogosEsporte.get(2).formatarMoeda());
+			jogosCarrinho.add(jogosEsporte.get(2));
 			valor += jogosEsporte.get(2).getPrecoUni();
 			break;
-			case 4: System.out.print("\n Valor: "+jogosEsporte.get(3).formatarMoeda());
+			case 4: JOptionPane.showMessageDialog(null,"\n Jogo Adicionado ao Carrinho!!\n\n "+jogosEsporte.get(3).getNomeJogo()+"\n Preço: "+jogosEsporte.get(3).formatarMoeda());
+			jogosCarrinho.add(jogosEsporte.get(3));
 			valor += jogosEsporte.get(3).getPrecoUni();
+			break;
 			default: System.out.print("\n OPÇÃO INVÁLIDA!!"); break;
-			} 
+			}
 			
-			System.out.print("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Realizar Compra\n\n Opção: "); op = ler.nextInt();
-			if (op == 1) { this.Feed(); } else { this.Carrinho(); }
+			op = Integer.parseInt(JOptionPane.showInputDialog("\n\n Deseja continuar comprando?\n 1) Sim\n 2) Exibir Carrinho\n\n Opção: "));
+			if (op == 1) { FeedClass.Feed(); } else { FeedClass.Carrinho(); }
 	}
 	
-	public void Carrinho() {
+	static void Carrinho() {	// Menu onde mostrará os Métodos de forma de pagamento e Carrinho
 		int op;
-		System.out.println("\n ----------------------------------------\n"
-				+ "\tCARRINHO\n ----------------------------------------");
-		System.out.print(" VALOR TOTAL: "+this.formatarMoeda()+"\n");
-		System.out.print("\n 1) Adicionar Forma de pagamento");
-		System.out.print("\n 2) Exibir Forma de pagamento cadastrado");
-		System.out.print("\n 3) Exibir carrinho");
-		System.out.print("\n Opção: "); op = ler.nextInt();
 		
+		op = Integer.parseInt(JOptionPane.showInputDialog("\n ----------------------------------------\n"
+				+ " CARRINHO"
+				+ "\n ----------------------------------------"
+				+ "\n VALOR TOTAL: "+FeedClass.formatarMoeda()+"\n"
+				+ "\n 1) Adicionar Forma de pagamento"
+				+ "\n 2) Exibir Forma de pagamento cadastrado"
+				+ "\n 3) Exibir Carrinho"
+				+ "\n 4) Voltar"
+				+ "\n\n Opção: "));
+
 		switch (op) {
 		
 		case 1: PagamentoClass.cartao(); break;
 		case 2: PagamentoClass.print(); break;
-		case 3: this.exibirCarrinho(); break;
-		default: JOptionPane.showMessageDialog(null,"\n Opção Inválida!!"); this.Carrinho(); break;
+		case 3: FeedClass.exibirCarrinho(); break;
+		case 4: FeedClass.Feed(); break;
+		default: JOptionPane.showMessageDialog(null,"\n Opção Inválida!!"); FeedClass.Carrinho(); break;
 		
 		}
 	}
 
-	public void exibirCarrinho() {
+	static void exibirCarrinho() {
+		
+		// Método para Exibir os jogos que foram escolhidos
+		String textoJogos = "";
+		for(int i=0;i<jogosCarrinho.size();i++) {
+			textoJogos += (i + 1) + ") " +jogosCarrinho.get(i).getNomeJogo() +"\n Preço: "+jogosCarrinho.get(i).formatarMoeda()+"\n\n";
+		}
+		
+		JOptionPane.showMessageDialog(null,"\n----------------------------------------\n"
+				+ "      ITEMS CARRINHO\n----------------------------------------\n"
+				+ textoJogos+"\n Valor total: "+FeedClass.formatarMoeda());
+		
+		FeedClass.Carrinho();
 		
 	}
 	
-	public String formatarMoeda() {	// Formatar Preço para R$ 0.000,00
+	static String formatarMoeda() {	// Formatar Preço para R$ 0.000,00
 		NumberFormat nf = NumberFormat.getCurrencyInstance();
 		nf.setMinimumFractionDigits(2);
 		String formatoMoeda = nf.format(valor);
@@ -241,16 +274,8 @@ public class FeedClass {
 	}
 	
 	// Get e Set
-	public String getNome() { return nome; }
-
 	public static int getValor() { return valor; }
 
 	public static void setValor(int valor) { FeedClass.valor = valor; }
-
-	public void setNome(String nome) { this.nome = nome; }
-
-	public double getPreco() { return preco; }
-
-	public void setPreco(double preco) { this.preco = preco; }
 
 }
